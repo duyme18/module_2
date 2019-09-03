@@ -1,34 +1,41 @@
-import javafx.css.Size;
-
 import java.util.Scanner;
 
 public class TASK404341 {
     public static void main(String[] args) {
-        int x, k;
-        int[] arr = new int[10];
+        Scanner scanner = new Scanner(System.in);
+        int x, viTri;
+        int[] arr;
+        arr = new int[10];
+        int length = arr.length - 1;
         arr[0] = 10;
         arr[1] = 4;
         arr[2] = 6;
         arr[3] = 7;
         arr[4] = 8;
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập giá trị cần chèn, x = ");
-        x = sc.nextInt();
-
-        System.out.print("Nhập vị trí cần chèn, k = ");
-        k = sc.nextInt();
-        if (k > 1 && k <= arr.length - 1) {
-            for (int i = 0; i < arr.length; i++) {
-                if (k == i) {
-                    arr[i] = arr[i + 1];
-                    arr[i] = x;
-                }
-            }
+        System.out.print("Các phần tử trong mảng: ");
+        for (int a : arr) {
+            System.out.print(a + "\t");
         }
-        for (int a : arr)
-            System.out.println("các phần tử sau khi chèn: " + a);
+        System.out.print("\nNhập giá trị cần chèn, x = ");
+        x = scanner.nextInt();
+        System.out.print("Nhập vị trí cần chèn, vị trí = ");
+        viTri = scanner.nextInt();
+        ThemPhanTu(arr, length, x, viTri);
+        System.out.print("Các phần tử sau khi thêm: ");
+        for (int c : arr) {
+            System.out.print(c + "\t");
+        }
+
     }
 
-
+    static void ThemPhanTu(int a[], int n, int x, int viTri) {
+        if (viTri >= 0 && viTri <= n) {
+            for (int i = n; i > viTri; i--) {
+                a[i] = a[i - 1];
+            }
+            a[viTri] = x;
+            n++;
+        } else
+            System.out.printf("\nVị trí không hợp lệ.", viTri);
+    }
 }
-
